@@ -373,9 +373,11 @@ var pizzaElementGenerator = function(i) {
   pizzaDescriptionContainer = document.createElement("div");
 
   pizzaContainer.classList.add("randomPizzaContainer");
-  pizzaContainer.style.width = "33.33%";
+  // Removed the style width, and added bootstram column to make the page responsive
+  pizzaContainer.classList.add("col-md-4");
   pizzaContainer.style.height = "325px";
   pizzaContainer.id = "pizza" + i;                // gives each pizza element a unique id
+
   pizzaImageContainer.classList.add("col-md-6");
 
   pizzaImage.src = "images/pizza.png";
@@ -422,28 +424,32 @@ var resizePizzas = function(size) {
   changeSliderLabel(size);
 
   // Iterates through pizza elements on the page and changes their widths
-  // Removed the old function and use % widths instead of calculating px for every pizza
+  // I changed this to a function that uses bootstrap columns instead of calculating px for every pizza.
+  // This change makes the site responsive and usable on mobiles without any noticeable perfomance loss
+  // over using % widths.
   function changePizzaSizes(size) {
-    var newWidth;
+    var col;
     switch(size) {
         case "1":
-          newWidth = 25;
+          col = 3;
           break;
         case "2":
-          newWidth = 33.3;
+          col = 4;
           break;
         case "3":
-          newWidth = 50;
+          col = 6;
           break;
         default:
           console.log("bug in sizeSwitcher");
     }
     var randomPizzas = document.querySelectorAll(".randomPizzaContainer");
     for (var i = 0; i < randomPizzas.length; i++) {
-      randomPizzas[i].style.width = newWidth + "%";
+      // Remove the old col-md class without losing randomPizzaContainer class
+      randomPizzas[i].className = "randomPizzaContainer";
+      randomPizzas[i].classList.add("col-md-" + col);
     }
   }
-
+  
   changePizzaSizes(size);
 
   // User Timing API is awesome
