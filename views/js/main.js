@@ -488,10 +488,12 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
-
+  // Moved the scrollTop lookup outside the loop to avoid forced reflow
+  var phase = Math.sin((document.body.scrollTop / 1250));
   var items = document.querySelectorAll('.mover');
   for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+    phase + (i % 5);
+    // Only the style is calculated inside the loop now, avoiding too many layouts
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
