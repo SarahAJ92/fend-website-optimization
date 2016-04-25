@@ -449,7 +449,7 @@ var resizePizzas = function(size) {
       randomPizzas[i].classList.add("col-md-" + col);
     }
   }
-  
+
   changePizzaSizes(size);
 
   // User Timing API is awesome
@@ -530,5 +530,6 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     document.querySelector("#movingPizzas1").appendChild(elem);
   }
+  
   updatePositions();
 });
