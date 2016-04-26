@@ -495,12 +495,14 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
   // Moved the scrollTop lookup outside the loop to avoid forced reflow
-  var phase = Math.sin((document.body.scrollTop / 1250));
+  var scroll = document.body.scrollTop / 1250;
   var items = document.querySelectorAll('.mover');
+
   for (var i = 0; i < items.length; i++) {
-    phase + (i % 5);
+    var phase = Math.sin(scroll + (i % 5));
     // Only the style is calculated inside the loop now, avoiding too many layouts
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    // Instead of using style.left, I switched to translateX 
+    items[i].style.transform = 'translateX(' + 100 * phase + 'px)';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -520,13 +522,16 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
+  // Lowered number of loops to 50, since there are nowhere close to 200 pizzas displayed at once.
+  // The actual number is even lower in most cases, but I chose 50 to be safe
+  for (var i = 0; i < 50; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
     elem.style.height = "100px";
     elem.style.width = "73.333px";
-    elem.basicLeft = (i % cols) * s;
+    // Changed basicLeft to style.left since I am using CSS transform
+    elem.style.left = (i % cols) * s + 'px';
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     document.querySelector("#movingPizzas1").appendChild(elem);
   }
