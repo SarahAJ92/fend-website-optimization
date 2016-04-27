@@ -5,7 +5,7 @@ The first task was to optimize the index.html, achieving a PageSpeed Insights sc
 The second task was to optimize pizza.html to run in 60 fps, and lowering the time it takes to resize the pizzas.
 
 ###Getting started
-** This is the source version of the project. To view the production code, please choose the dist branch of this repository**
+**Note: This is the source version of the project. To view the production code, please choose the dist branch of this repository**
 
 To check out this project, clone the repository to your computer, and open index.html
 I have uploaded the **dist** version of the site to http://www.orell.no/fend-website-optimization/ for use in PageSpeed Insights

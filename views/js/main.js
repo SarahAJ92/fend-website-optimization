@@ -422,9 +422,7 @@ var resizePizzas = function(size) {
   changeSliderLabel(size);
 
   // Iterates through pizza elements on the page and changes their widths
-  // I changed this to a function that uses bootstrap columns instead of calculating px for every pizza.
-  // This change makes the site responsive and usable on mobiles without any noticeable perfomance loss
-  // over using % widths.
+  // I changed this to a function that uses % widths instead of calculating px for every pizza.
   function changePizzaSizes(size) {
     var col;
     switch(size) {
@@ -442,7 +440,7 @@ var resizePizzas = function(size) {
     }
     var randomPizzas = document.querySelectorAll(".randomPizzaContainer");
     for (var i = 0; i < randomPizzas.length; i++) {
-      // Remove the old col-md class without losing randomPizzaContainer class
+      // Update the width using CSS
       randomPizzas[i].style.width = newWidth + '%';
     }
   }
