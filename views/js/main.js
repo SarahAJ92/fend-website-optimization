@@ -373,11 +373,9 @@ var pizzaElementGenerator = function(i) {
   pizzaDescriptionContainer = document.createElement("div");
 
   pizzaContainer.classList.add("randomPizzaContainer");
-  // Removed the style width, and added bootstram column to make the page responsive
-  pizzaContainer.classList.add("col-md-4");
+  pizzaContainer.style.width = "33.33%";
   pizzaContainer.style.height = "325px";
   pizzaContainer.id = "pizza" + i;                // gives each pizza element a unique id
-
   pizzaImageContainer.classList.add("col-md-6");
 
   pizzaImage.src = "images/pizza.png";
@@ -431,13 +429,13 @@ var resizePizzas = function(size) {
     var col;
     switch(size) {
         case "1":
-          col = 3;
+          newWidth = 25;
           break;
         case "2":
-          col = 4;
+          newWidth = 33.33;
           break;
         case "3":
-          col = 6;
+          newWidth = 50;
           break;
         default:
           console.log("bug in sizeSwitcher");
@@ -445,8 +443,7 @@ var resizePizzas = function(size) {
     var randomPizzas = document.querySelectorAll(".randomPizzaContainer");
     for (var i = 0; i < randomPizzas.length; i++) {
       // Remove the old col-md class without losing randomPizzaContainer class
-      randomPizzas[i].className = "randomPizzaContainer";
-      randomPizzas[i].classList.add("col-md-" + col);
+      randomPizzas[i].style.width = newWidth + '%';
     }
   }
 
